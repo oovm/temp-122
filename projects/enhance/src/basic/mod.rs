@@ -1,15 +1,14 @@
-pub mod level;
-pub mod state;
 pub mod display;
+pub mod level;
 pub mod mapping;
 #[cfg(feature = "serde")]
 pub mod ser_der;
+pub mod state;
 
-use crate::EnhanceLevel;
+use crate::{EnhanceLevel, EnhanceMatrix};
+use nalgebra::DMatrix;
 use std::{
     collections::{BTreeMap, BTreeSet},
+    fmt::{Display, Formatter, Write},
     ops::Add,
 };
-use std::fmt::{Display, Formatter, Write};
-use nalgebra::DMatrix;
-

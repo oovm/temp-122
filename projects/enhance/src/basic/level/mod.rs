@@ -1,4 +1,4 @@
-use std::mem::take;
+
 use super::*;
 
 
@@ -14,6 +14,7 @@ pub struct EnhanceLevel<T: Ord> {
     /// The amount of resources that need to be consumed for strengthening
     pub enhance_cost: BTreeMap<T, u128>,
 }
+
 #[derive(Clone, Debug)]
 pub struct EnhanceTransition {
     /// Jump to this level when strengthening fails
