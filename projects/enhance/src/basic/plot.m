@@ -1,7 +1,6 @@
-(* ::Package:: *)
-
 plotPDF[p_] := Block[
-    {pdf},
+    {legends, pdf},
+    legends = "+"<>ToString[#]&/@selected;
     pdf = Table[{j, PDF[FirstPassageTimeDistribution[p, i], j]}, {i, selected + 1}, {j, steps}];
     ListLinePlot[
         pdf,
@@ -11,7 +10,8 @@ plotPDF[p_] := Block[
 ];
 
 plotCDF[p_] := Block[
-    {cdf},
+    {legends, cdf},
+    legends = "+"<>ToString[#]&/@selected;
     cdf = Table[{j, CDF[FirstPassageTimeDistribution[p, i], j]}, {i, selected + 1}, {j, steps}];
     ListLinePlot[
         cdf,
@@ -22,12 +22,12 @@ plotCDF[p_] := Block[
 
 plotMean[p_, max_] := Block[
     {mean, m1, m2, m3, m4, m5},
-    mean = Table[Mean @ FirstPassageTimeDistribution[p, i], {i, max}];
-    m1 = Table[Quantile[FirstPassageTimeDistribution[p, i], 0.05], {i, max}];
-    m2 = Table[Quantile[FirstPassageTimeDistribution[p, i], 0.25], {i, max}];
-    m3 = Table[Quantile[FirstPassageTimeDistribution[p, i], 0.50], {i, max}];
-    m4 = Table[Quantile[FirstPassageTimeDistribution[p, i], 0.75], {i, max}];
-    m5 = Table[Quantile[FirstPassageTimeDistribution[p, i], 0.95], {i, max}];
+    mean = Table[{i, Mean@FirstPassageTimeDistribution[p, i + 1]}, {i, 0, max}];
+    m1 = Table[{i, Quantile[FirstPassageTimeDistribution[p, i + 1], 0.05]}, {i, 0, max}];
+    m2 = Table[{i, Quantile[FirstPassageTimeDistribution[p, i + 1], 0.25]}, {i, 0, max}];
+    m3 = Table[{i, Quantile[FirstPassageTimeDistribution[p, i + 1], 0.50]}, {i, 0, max}];
+    m4 = Table[{i, Quantile[FirstPassageTimeDistribution[p, i + 1], 0.75]}, {i, 0, max}];
+    m5 = Table[{i, Quantile[FirstPassageTimeDistribution[p, i + 1], 0.95]}, {i, 0, max}];
     ListLinePlot[
         {mean, m1, m2, m3, m4, m5},
         AxesLabel -> {"\:5f3a\:5316\:7b49\:7ea7", "\:5f3a\:5316\:6b21\:6570"},

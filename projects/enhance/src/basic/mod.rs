@@ -8,7 +8,6 @@ pub mod state;
 use crate::{EnhanceLevel, EnhanceMatrix};
 use nalgebra::DMatrix;
 use std::{
-    collections::{BTreeMap, BTreeSet},
-    fmt::{Display, Formatter, Write},
-    ops::Add,
+    collections::BTreeMap,
+    fmt::{Display, Formatter},
 };
